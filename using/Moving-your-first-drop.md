@@ -6,9 +6,9 @@ demonstrating the process at the end.
 
 ## Preparation
 
-Follow the steps in [](building/Top-Plate-Preparation.md) and [](building/MylarFilmAssembly/Mylar-Film-Carrier-Assembly) to create a hydrophobically coated top plate and dielectric film.
+Follow the steps in [](/building/Top-Plate-Preparation.md) and [](/building/MylarFilmAssembly/Mylar-Film-Carrier-Assembly) to create a hydrophobically coated top plate and dielectric film.
 
-Make sure your [hardware is setup](using/Setting-up-and-powering-the-main-board), and you've [installed the driver software](using/Installing-software). You need to be ready to run the pdserver (and, optionally, pdcam) daemon either on a raspberry PI or on another computer connected via USB to your PurpleDrop. These instructions use the Dashboard UI and a web browser to control the PurpleDrop. 
+Make sure your [hardware is setup](/using/Setting-up-and-powering-the-main-board), and you've [installed the driver software](/using/Installing-software). You need to be ready to run the pdserver (and, optionally, pdcam) daemon either on a raspberry PI or on another computer connected via USB to your PurpleDrop. These instructions use the Dashboard UI and a web browser to control the PurpleDrop. 
 
 Switch the HV enable switch to the OFF position while setting up.
 
@@ -66,8 +66,7 @@ It's possible to develop short circuits, possibly due to dielectric failure or d
 
 To enable the high voltage output, move the toggle switch on the board to the ON position, and make sure the software enable switch is ON in the dashboard. You should see the reported voltage increase to your setting, and the HV enable switch is illuminated red. 
 
-```{image} images/voltage-screenshot.png
-
+```{image} images/voltage_screenshot.png
 :alt: Screenshot of voltage display
 ```
 

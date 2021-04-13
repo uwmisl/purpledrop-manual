@@ -2,9 +2,7 @@
 
 ## Hardware Designs
 
-[PurpleDrop Main Board](https://github.com/uwmisl/purpledrop/tree/master/hardware) - The primary controller board with high voltage drivers and sensors
-
-The drop actuation surface is provided by a removable cartridge board that installs onto the main board. Some examples of electrode board designs can be found here:
+[PurpleDrop Main Board](https://github.com/uwmisl/purpledrop/) - The primary controller board with high voltage drivers and sensors
  
 [Electrode Board v3](https://github.com/uwmisl/pd-electrodeboard-pcb-v3) 
 

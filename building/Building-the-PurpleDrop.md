@@ -23,5 +23,5 @@ The PurpleDrop PCB design can be found at [https://github.com/uwmisl/purpledrop]
 
 The mainboard has two 64-pin Samtec FTS-132-03-F-DV board-to-board connectors for plugging in a separate electrode board. We typically fabricate the electrode array that the drops operate on as PCBs, although it is also possible to drive other types of electrode arrays, such as patterned chrome or ITO coated glass with an appropriate connection adapter. 
 
-See this [list of electrode board designs](Electrode-board-designs) for some examples of electrode boards, or [creating a custom electrode board]() for a guide on how to create a new design with KiCad.
+See this [list of electrode board designs](Electrode-board-designs) for some examples of electrode boards, or [creating a custom electrode board]()(TODO) for a guide on how to create a new design with KiCad.
 
