@@ -83,15 +83,27 @@ In any case, you should get a substantially higher capacitance on a covered elec
 
 ## Move a Drop
 
-You can enable electrodes by clicking on them in the "Live View" panel.. If you want to enable multiple electrodes at once, you can increase the brush size using the "larger" and "smaller" buttons at the bottom of the live view panel. Additionally: 
+You can enable electrodes by clicking on them in the "Live View" panel. If you
+want to enable multiple electrodes at once, you can increase the brush size
+using the "larger" and "smaller" buttons at the bottom of the live view panel.
+Additionally: 
 
 * Shift-click will add the clicked electrodes to the currently enabled ones
 * Ctrl-click will disable the clicked electrodes, leaving any other currently enabled electrodes active
 * Arrow keys will move the activated electrodes, so you can move a drop with them
 
-If the drop doesn't move, first double check that you are getting capacitance measurements. If you are measuring an increased capacitance on electrodes which are covered by the drop, this is a very good indicator that everything is wired correctly and you are in fact charging the electrodes to the expected voltage, and you can begin to ask why the electric field is not having the desired affect on the drop. If you are not, this likely suggests you have a wiring problem, or some other issue which is preventing you from driving the electrode correctly, and you can focus on debugging your electrical setup.
-
-In the former case, it may simply be a bad hydrophobic surface. You can try manually moving the drop to a different area of the board, and see if that makes any difference; often local defects in the surface create small hydrophilic areas which capture drops.
+If the drop doesn't move, first double check that you are getting capacitance
+measurements. If you are measuring an increased capacitance on electrodes
+which are covered by the drop, this is a very good indicator that everything
+is wired correctly and you are in fact charging the electrodes to the expected
+voltage, and you can begin to ask why the electric field is not having the
+desired affect on the drop. If you are not, this likely suggests you have a
+wiring problem, or some other issue which is preventing you from driving the
+electrode correctly, and you can focus on debugging your electrical setup. In
+the former case, it may simply be a bad hydrophobic surface. You can try
+manually moving the drop to a different area of the board, and see if that
+makes any difference; often local defects in the surface create small
+hydrophilic areas which capture drops.
 
 ## Video
 

@@ -252,7 +252,20 @@ the main takeaway for operating PurpleDrop is that the scan capacitance is
 useful for determining the presence of drops on the board, but for the most
 accurate volume estimate the active capacitance should be preferred.
 
+Accessing the Capacitance Measurements in Software
+--------------------------------------------------
 
+There are two RPC calls available to access the two modes of capacitance
+measurement.
 
+The `active_capacitance <https://pdclient.readthedocs.io/en/latest/pdclient.html#pdclient.PdClient.active_capacitance>`_
+method returns the latest value for active electrodes.
 
+The `bulk_capacitance <https://pdclient.readthedocs.io/en/latest/pdclient.html#pdclient.PdClient.bulk_capacitance>`_
+method returns the latest scan value.
 
+Note that for both of these methods, they return the latest value available when
+called. This is not much of a concern for `active_capacitance`, as it is updated
+very frequently (500Hz). But for `bulk_capacitance`, the reading may be up to
+0.5 seconds out-of-date, and you may need to take this into consideration
+when writing your code.

@@ -2,11 +2,11 @@
 
 The PurpleDrop driver software is written in python should work on any OS, but has been primarily tested on Linux and MacOS. It's possible to plug a PurpleDrop directly into a laptop USB port and run the python driver there, however there are some advantages to using a raspberry PI single-board computer to host your device:
 
-- The purpledrop softare supports using the raspberry pi camera for a live view of the electrode board. 
-- Installing the software on a Raspberry PI allows for a consistent environment and avoids potential difficulties that can arise installing python packages on various platforms (e.g. linux, mac, windows). 
-- You can control the PurpleDrop via network connection, which means that you can setup an experiment and let it run without your laptop, and even check in on it remotely.
+- The purpledrop softare supports using the raspberry pi camera for a live view of the electrode board.
+- Installing the software on a Raspberry PI allows for a consistent environment and avoids potential difficulties that can arise installing python packages on various platforms. 
+- You can control the PurpleDrop via network connection, which means that you can setup an experiment and let it run without your laptop present, and even check in on it remotely.
 
-These instructions are written for installing software onto a Raspberry PI running RaspiOS.
+These instructions are written for installing software onto a Raspberry PI running RaspiOS. It is generally applicable on other platforms as well, but the details may differ.
 
 ```{image} /images/rpi4_connection_graphic.png
 :alt: Connecting to PurpleDrop via Raspberry PI
@@ -26,7 +26,7 @@ It is possible to configure networking while headless by placing configuration o
 
 In order to enable connection to the raspberry PI from anywhere, regardless of your networking configuration, you may wish to install a VPN service such as [tailscale](https://tailscale.com/) or [zerotier](https://www.zerotier.com/). 
 
-Unfortunately, there are a number of options and exactly what you need will depend on your network setup and use-case, so these instructions won't go into detail. At the end of the day, you should be able to login to the pi via SSH. 
+Unfortunately, there are a number of options and exactly what you need will depend on your network setup and use-case, so these instructions won't go into detail. Instead, please see the raspberry PI documentation, and the many tutorials that can be found online for setting up a raspberry PI. At the end of the day, you should be able to login to the pi via SSH. 
 
 ## Software setup
 
@@ -36,30 +36,45 @@ The raspberry pi image comes with a default password of "raspberry" for the user
 
 ### Update apt packages
 
-`sudo apt update`
-`sudo apt upgrade`
+```
+sudo apt update
+sudo apt upgrade
+```
 
 ### SSH authorized keys
 
-To make logins faster and easier, you can use an SSH key for authentication instead of a password. First, you'll need to already have an SSH on your machine (not the PI). If you don't have one, and you are using MacOS or linux, you can run the `ssh-keygen` command to create one in `~/.ssh/id_rsa.pub`. 
+This is optional, but useful to make logins faster and easier: You can use an SSH key for authentication instead of a password. First, you'll need to already have an SSH on your machine (not the PI). If you don't have one, and you are using MacOS or linux, you can run the `ssh-keygen` command to create one in `~/.ssh/id_rsa.pub`. 
 
 To install the key on the pi, you just need to place it into the `/home/pi/.ssh/authorized_keys` file. First, create the directory by running this command on the pi:
 
 `mkdir ~/.ssh`
 
-Then copy the key by running this command on your local machine (if you already have keys installed, this will overwrite them so do this only on a fresh install):
+Then copy the public key by running this command on your local machine (if you
+already have keys installed, this will overwrite them so do this only on a 
+fresh install):
 
 `scp ~/.ssh/id_rsa.pub pi@<youripaddress>:/home/pi/.ssh/authorized_keys`
 
 ### Install tmux
 
-This is optional, but tmux allows your ssh sessions to outlive your connection, so that you can log in, run something, and have it continnue running after you disconnect from your ssh session.  You can then pick up on the same terminal the next time you log in. 
+This is optional, but highly recommended. Tmux allows your ssh sessions to outlive your connection,
+so that you can log in, run something, and have it continnue running after you
+disconnect from your ssh session.  You can then pick up on the same terminal
+the next time you log in. It also allows you to more easily run multiple
+processes at once, by allowing multiple windows on the same ssh connection.
 
 To install tmux: `sudo apt install tmux`
 
 To start a tmux session: `tmux`. 
 
-To reconnect to it later, you can run `tmux attach`, or `tmux a`. To see what sessions are running: `tmux ls`. Tmux does a lot more; checkout https://github.com/tmux/tmux/wiki for more info.
+To create a new windows in your session, type `CTRL-b, c` (that's control + b
+together, followed by the c key). You should see the list of active windows on
+the status bar at the bottom of your terminal. To switch back to the first
+window (number 0), you can type `CTRL-b, 0`. 
+
+To reconnect later, you can run `tmux attach`, or `tmux a`. To see what
+sessions are running: `tmux ls`. Tmux does a lot more; checkout 
+https://github.com/tmux/tmux/wiki for more info.
 
 ### Install purpledrop python package
 
@@ -85,7 +100,7 @@ If your device isn't detected, you may need to program or update the embedded fi
 
 ### Enable the camera
 
-If you want to use the raspberry pi camera with pdcam for live view or recording of the purpledrop, you must enable the camera. You can do this with the `sudo raspi-config` command. Navigate to "Interface Options", and enable the camera. You will have to reboot for this to take effect.
+If you want to use the raspberry pi camera with pdcam for live view or recording of the purpledrop, you must enable the camera. You can do this with the `sudo raspi-config` command. Navigate to "Interface Options", and enable the camera. You will have to reboot for this to take effect (`sudo reboot`).
 
 ```{image} images/raspi-config-screenshot.png
 :alt: raspi-config Screenshot
@@ -120,7 +135,7 @@ If you are using the camera, you have to start the pdcam daemon as well. Open a 
 
 Now, you can switch back and forth between the tmux windows by typing CTRL-B followed by 0 or 1.
 
-The server provides a web interface on port 7000, so you can point your browser to http://<yourraspberrypiaddress>:7000 to load the control dashboard. It should look something like this:
+The server provides a web interface on port 7000, so you can point your browser to http://yourraspberrypiaddress:7000 to load the control dashboard. It should look something like this:
 
 ```{image} images/purpledrop-dashboard-screenshot.png
 :alt: PurpleDrop Dashboard Screenshot

@@ -22,6 +22,11 @@ Only one set of resistors should be populated. There is also a software configur
 Note that on rev. 6.0 of the PurpleDrop (fixed in 6.1) the silkscreen incorrectly labels config A as pin 93
 ```
 
+```{note}
+Pin 15 remains an option for backwards compatibility, but for any new electrode
+designs, you are encouraged to always use pin 97 to drive the top plate.
+```
+
 ### Board Standoffs
 
 It's recommended to install standoffs onto the main board for it to stand on. There are 8 holes in the board, sized for 2-56 screws. 

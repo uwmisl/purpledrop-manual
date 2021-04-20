@@ -6,10 +6,16 @@ Here are some examples of open source electrode board designs created at MISL. T
 
 A fairly generic grid layout, with four reservoirs and a 2x2 heater area, designed for a 50x50mm glass plate. It includes two additional connectors (aside from the main purpledrop connectors) for wiring the resistive heaters and temperature sensors. 
 
-```{figure} images/electrode_board_v4.1.png
+```{figure} images/electrode_board_v4.1_front.jpg
 :align: center
 
-Electrode Board v4.1
+Front of Electrode Board v4.1
+```
+
+```{figure} images/electrode_board_v4.1_back_annotated.jpg
+:align: center
+
+Back of Electrode Board v4.1
 ```
 
 

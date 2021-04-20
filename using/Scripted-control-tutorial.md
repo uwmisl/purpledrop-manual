@@ -4,15 +4,20 @@
 
 The Live View on the web UI is handy for visualizing and quickly trying things out, but for most experiments more automated control is needed. That can be achieved via the HTTP API provided by pd-server, and this tutorial will walk through an example of using python to drive a simple demonstration dispensing drops from a reservoir, mixing them, splitting them, and finally putting them out to a waste reservoir.
 
-To start off, here's a video of the script in action:
+Here's a video of the demo script in action:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/s1qvKi2XE1I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## The JSON-RPC API
 
-The control API is provided on port 7000, at the `/api` route. All control is done via remote procedural calls (RPC) conforming to the [JSON-RPC](https://www.jsonrpc.org/) specification. In this tutorial we will be using the Python programming language and the `pdclient` library for interacting with the PurpleDrop, but it's possible to control it using any programming language you prefer. 
+The control API is provided on port 7000, at the `/rpc` route. All control is
+done via remote procedural calls (RPC) conforming to the [JSON-RPC](https://www.jsonrpc.org/)
+specification. In this tutorial we will be using the Python programming language
+and the [pdclient](https://github.com/uwmisl/pdclient) library for interacting
+with the PurpleDrop, but it's possible to control it using any programming
+language you prefer. 
 
-The API offers a number of functions. For the most up-to-date list of available RPC functions, you can open the `/api/map` route in your browser.
+The API offers a number of functions. For the most up-to-date list of available RPC functions, you can open the `/rp/map` route in your browser.
 
 ## Installing pdclient
 
@@ -293,6 +298,7 @@ def __init__(self, A_pin, B_pin, extend_pins, drop_start, client):
 When a Reservoir is created, it is given all of the pin numbers used for dispensing on this reservoir. 
 
 ```{figure} images/reservoir_dispense_graphic.png
+:align: center
 
 Location of the pin names on an example reservoir
 ```
@@ -322,14 +328,19 @@ def extend(self):
         raise DropError("Failed to extend")
 ```
 
-The reservoir performs two high level actions: dispense and ingest. The dispense action is broken up into two steps: extend and separate. All of the reservoir actions are performed by simply turning on different subsets of electrodes, and then polling the capacitance readings to detect a desired condition in the readings. When extending, the desired condition is that all three of the extend electrodes should read a minimum capacitance; i.e. they should all have water over them.
+The reservoir performs two high level actions: dispense and ingest. The
+dispense action is broken up into two steps: extend and separate. All of the
+reservoir actions are performed by turning on different subsets of electrodes,
+and then polling the capacitance readings to detect a desired condition. When
+extending, the desired condition is that all three of the extend electrodes
+should read a minimum capacitance; i.e. they should all have water over them.
 
 Here, two RPC calls are used: 
 
-- The `enable_pins` function takes a list of pin numbers, and enables these electrodes (any not in the list are disabled if they were on)
-- The 'bulk_capacitance' function returns the most recent capacitance scan measurement. Twice a second, the purpledrop performs a capacitance scan during which is measures the capacitance of every electrode individually. The return value of `bulk_capacitance` is a list of 128  floats giving the capacitance for each electrode in pF (picofarads).
+- The `enable_pins` function takes a list of pin numbers, and enables these electrodes (any not in the list are disabled)
+- The `bulk_capacitance` function returns the most recent capacitance scan measurement. Twice a second, the purpledrop performs a capacitance scan during which it measures the capacitance of every electrode individually. The return value of `bulk_capacitance` is a list of 128  floats giving the capacitance for each electrode in pF (picofarads).
 
-The `try_for` function helps to implement this pattern of polling a function and waiting for it to return true, but it adds a timeout so that if the function does not return true after a period of time has elapsed, it will return false. If after the TIMEOUT (in this case, 6 seconds) period elapses, the extend function does not detect water over all of the extend electrodes, then it will fail by raising a DropError exception.
+The `try_for` function helps to implement this pattern of polling a function and waiting for it to return true, and it adds a timeout so that if the function does not return true after a period of time has elapsed, it will return false. If after the timeout (in this case, 6 seconds) period elapses, the extend function does not detect water over all of the extend electrodes, then it will fail by raising a `DropError` exception.
 
 The `separate` function works similarly, but drives different series of
 electrode activations to split the drop by leaving the extend electrode on, 
@@ -376,7 +387,8 @@ def move(drop, sequence, c, delay=0.25):
         time.sleep(delay)
 ```
 
-The move function is actually quite simple, but it introduces the Drop object
+The move function is actually quite simple, but it introduces the 
+[Drop](https://pdclient.readthedocs.io/en/latest/drop.html) object
 from the pdclient library. A Drop is a python class designed to track the state
 of a drop on the board. It knows the positon, and the size of the drop, and it
 has a reference to a client that it can use to control the drop to create a
@@ -390,27 +402,47 @@ the capacitance measurements to determine when the drop has been moved, or to
 detect failure if it does not move. It's possible to move a drop
 by simply turning on the neighboring electrodes (the ones you want it to move 
 to) and waiting a fixed period of time, but this will in general be slower and
-if the drop does not move you won't know.
+if the drop does not move you won't know!
 
-```{note}
+````{note}
 The move_drop RPC call returns more information, including the initial 
 capacitance on the starting electrodes, the final capacitance on the 
 destingation electrodes, and a high-frequency (500Hz) time series of the
 destination capacitance during the move. This can be useful for getting a 
-higher precision measurement of drop velocity, when that is of interest.
+higher precision measurement of drop velocity, when that is of interest. 
+
+Here's a example of the data returned by `move_drop`:
+
+```javascript
+    {
+        "success": true,
+        "closed_loop": true,
+        "closed_loop_result": {
+            "pre_capacitance": 1001,
+            "post_capacitance": 990,
+            "time_series": [0.0, 0.002, 0.004, <snip>, 0.60],
+            "capacitance_series": [600, 610, 624, <snip>, 990]
+        }
+    }
 ```
+
+````
+
+
 
 ### Defining the drop split procedure
 
-For splitting in this demo, we just do a simple open-loop splitting. The basic
-procedure is to spread the drop out in a long line, then turn off an electrode
-in the middle, and turn on more electrodes at each end to create pressure to
-pull the drop on both sides, causing them to be split off in the middle.
+For splitting in this demo, we just do a simple open-loop sequene of activations.
+The basic procedure is to spread the drop out in a long line, then turn off an
+electrode in the middle, and turn on more electrodes at each end to create
+pressure to pull the drop on both sides, causing them to be split off in the
+middle.
 
-This `split_generator` function is a python generator which yields a sequence
-of electrode lists to turn on. It's a little bit flexible, in that it can be
+This `split_generator` function is a python [generator](https://wiki.python.org/moin/Generators)
+which yields a sequence of electrode lists to turn on.
+It's a little bit flexible, in that it can be
 performed at different locations on the board via the `center` argument, but
-it's still fairly specified to the size of drop used in this demo, and may 
+it's still fairly specific to the size of drop used in this demo, and may 
 have to be adjusted for different situations. 
 
 ```python
@@ -444,8 +476,7 @@ def split_generator(center):
 ```
 
 To execute the split sequence, another utility function is defined:
-`open_loop_sequence`. This function just takes a list of lists of enabled pins
-and turns each on in succession with a fixed delay between each.
+`open_loop_sequence`. 
 
 ```python
 def open_loop_sequence(sequence, c, delay=1.0):
@@ -457,13 +488,18 @@ def open_loop_sequence(sequence, c, delay=1.0):
         time.sleep(delay)
 ```
 
+This function just takes a list of lists of enabled pins
+and turns each on in succession with a fixed delay in between. Note the 
+[PdClient.get_pin](https://pdclient.readthedocs.io/en/latest/pdclient.html#pdclient.PdClient.get_pin)
+function, which converts an `(x, y)` location into a pin number, using the data
+provided in the board definition.
+
 ### The main sequence
 
 That covers all of the setup/utility functions. Now in the `main` function,
 we essentially just define a sequence of actions using the utilities we've
-already created. This process is fairly simple and low-level, using 
-pre-programmed paths that were worked out by hand to move the drops where we
-want them to go. 
+already created. This process is fairly simple, using 
+pre-programmed paths to move the drops where we want them to go. 
 
 ```python
 def main():
@@ -523,6 +559,5 @@ environment you prefer should work.
 
 While running the script, you can keep the dashboard open in a browser window
 to watch it in action. It will highlight which electrodes are activated, and 
-if you have `pdcam` running, it can even overlay the active electrodes on
-live video. 
+if you have `pdcam` running, it can overlay the active electrodes on the video. 
 

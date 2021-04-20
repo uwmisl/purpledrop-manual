@@ -1,6 +1,14 @@
 # Mylar Film Dielectric Carrier Assembly
 
-The frame can be used to place a dielectric film with hydrophobic coating over the PurpleDrop electrode PCB for a disposable droplet actuation surface. 
+The drops don't sit directly on the electrodes; there is a layer in
+between that provides electrical isolation (dielectric) and hydrophobicity
+(hydrophobic coating). There are a number of options for these layers, 
+including vapor deposited coatings. One relatively simple and easy to construct
+way is to use a thin film of mylar as the dielectric, and spin on a coating to
+make it hydrophobic. 
+
+These instructions describe how we build and a mylar film onto an FR-4 frame
+that keeps it rigid and allows it to be attached to the electrode board. The
 
 ## Supplies
 
@@ -21,7 +29,6 @@ The frame can be used to place a dielectric film with hydrophobic coating over t
 The frame itself is made from FR4. The primary considerations for the material are that it can survive the baking of the hydrophobic coating and a sufficiently low coefficient of thermal expansion so that it doesn't over stretch the mylar while heating, either causing tearing or a failure of the adhesive. For this reasons, many options -- such as laser cut acrylic, or 3D printed ABS -- will not perform well for this task. The frame can be ordered cheaply from a prototype PCB vendor, such as Seeed Fusion, as it is essentially a PCB with no copper or other layers.
 
 PCB vendors expect designs to be uploaded in gerber format. The gerbers for the 100x74mm frame can be found here: {download}`film_carrier_100x74_gerbers.zip <film_carrier_100x74_gerbers.zip>`
-
 
 ```{image} 0ea7e09a095846c18495899adeceadc4.png
 :alt: Frame Drawing
