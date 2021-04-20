@@ -4,6 +4,7 @@ This repository contains content for the PurpleDrop Manual.
 
 It uses sphinx to render the markdown and/or RST formatted documents into HTML.
 
+The manual is hosted on [readthedocs](https://purpledrop.readthedocs.io/en/latest/).
 ## Formatting
 
 Most of the documentation in this project is written with markdown, instead of
