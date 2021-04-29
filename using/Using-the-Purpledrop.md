@@ -10,5 +10,6 @@ Setting-up-and-powering-the-main-board
 Moving-your-first-drop
 Scripted-control-tutorial
 CapacitanceMeasurement/Capacitance-Measurement
+Feedback-controlled-splitting
 ```
 
