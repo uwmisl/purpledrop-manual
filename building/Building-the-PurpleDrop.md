@@ -10,6 +10,7 @@
 MylarFilmAssembly/Mylar-Film-Carrier-Assembly
 Top-Plate-Preparation
 Bootloading-the-PurpleDrop-using-DFU
+Designing-Custom-Electrode-Board
 Electrode-board-designs
 ```
 
@@ -23,7 +24,7 @@ The PurpleDrop PCB design can be found at [https://github.com/uwmisl/purpledrop]
 
 The mainboard has two 64-pin Samtec FTS-132-03-F-DV board-to-board connectors for plugging in a separate electrode board. We typically fabricate the electrode array that the drops operate on as PCBs, although it is also possible to drive other types of electrode arrays, such as patterned chrome or ITO coated glass with an appropriate connection adapter. The electrode board typically has only a few components, including the two connectors that mate with the main board, so the PCB can be assembled by hand much more easily than the main board.
 
-See this [list of electrode board designs](Electrode-board-designs) for some examples of electrode boards, or [creating a custom electrode board]()(TODO) for a guide on how to create a new design with KiCad.
+See this [list of electrode board designs](Electrode-board-designs) for some examples of electrode boards, or [creating a custom electrode board](Designing-Custom-Electrode-Board) for a guide on how to create a new design with KiCad.
 
 ## Other components
 
