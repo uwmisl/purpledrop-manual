@@ -76,6 +76,14 @@ Top-down view of PurpleDrop electrode board connectors, showing pins numbered
 according to software pin numbering.
 ```
 
+## Mounting Holes
+
+Most PurpleDrop electrode boards use mounting holes with soldered on nuts in
+the corners for securing the dielectric film to the board with 2-56 screws.
+
+[Keystone 4929](https://www.digikey.com/en/products/detail/keystone-electronics/4929/9991060)
+inserts can be soldered into 3.7mm plated holes.
+
 ## Other Concerns
 
 ### Copper Pours for Planarity
