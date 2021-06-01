@@ -11,12 +11,24 @@
 Make sure the purpledrop has the correct top plate pin enabled before energizing the electrodes.
 
 One of the HV507 high voltage outputs is used to drive the top-plate, and this pin is connected to additional circuitry for current sensing. 
-Steering resistors (R1-R6) can be used to choose between two options for this pin: 
+Steering resistors (R1-R6) can be used to choose between three options for this pin:
 
-- Config A (R1, R5, R6) selects pin 97 (used with electrode board v4)
+- Config A (R1, R5, R6) selects pin 97 (default, used with most electrode boards and recommended for new designs)
 - Config B (R2, R3, R4) selects pin 15 (used with electrode board v3)
+- Config C (R1, R4) wires the current sense only to test points for external wiring
 
-Only one set of resistors should be populated. There is also a software configuration setting controlling which pin is driven as the top plate; this should be set according to the which resistors are populated.
+Only one set of resistors should be populated, and config A is the "standard" option. You should only need to change from config A if you are using a v3 electrode board, or have reviewed the schematic and know what you're doing. There is also a software configuration setting named "Top Plate Pin", which controls which pin is driven as the top plate; this **must** be set to match the installed resistors.
+
+```{figure} images/current_sense_resistors.jpg
+:width: 80%
+:align: center
+
+Shorting (0 ohm) resistors used on the purpledrop to select which pin is connected to the top-plate capacitance sensing circuitry.
+```
+
+```{warning}
+It's critical to ensure that software setting matches the hardware configuration before turning on the high voltage, as an incorrect setting can lead to a short circuit on the top-plate output.
+```
 
 ```{note}
 Note that on rev. 6.0 of the PurpleDrop (fixed in 6.1) the silkscreen incorrectly labels config A as pin 93
