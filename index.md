@@ -11,7 +11,8 @@ The [PurpleDrop](https://purpledrop.io) is an open source digital microfluidic (
 ```{toctree}
 :includehidden:
 :maxdepth: 2
-building/Building-the-PurpleDrop
+building-purpledrop/Building-the-PurpleDrop
+building-dmf-surface/index
 using/Using-the-Purpledrop
 links
 ```

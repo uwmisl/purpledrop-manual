@@ -3,12 +3,12 @@
 The drops don't sit directly on the electrodes; there is a layer in
 between that provides electrical isolation (dielectric) and hydrophobicity
 (hydrophobic coating). There are a number of options for these layers, 
-including vapor deposited coatings. One relatively simple and easy to construct
-way is to use a thin film of mylar as the dielectric, and spin on a coating to
-make it hydrophobic. 
+including vapor deposited coatings. One relatively simple and easy method
+is to use a thin film of mylar as the dielectric, and spin on a coating to
+make it hydrophobic.
 
-These instructions describe how we build and a mylar film onto an FR-4 frame
-that keeps it rigid and allows it to be attached to the electrode board. The
+These instructions describe how we build a mylar film onto an FR-4 frame
+that keeps it rigid and allows it to be attached to the electrode board.
 
 ## Supplies
 
@@ -25,6 +25,14 @@ that keeps it rigid and allows it to be attached to the electrode board. The
 - Oven or hot plate capable of heating to 120C
 
 ## Ordering the FR4 Frame
+
+```{note}
+
+These instructions include design files for a basic frame with a wide opening.
+There are more recent frame designs that are recommended for most purposes, which
+can be found at [](/building-dmf-surface/index). The instructions for how to 
+prepare the frame remain the same for these other designs.
+```
 
 The frame itself is made from FR4. The primary considerations for the material are that it can survive the baking of the hydrophobic coating and a sufficiently low coefficient of thermal expansion so that it doesn't over stretch the mylar while heating, either causing tearing or a failure of the adhesive. For this reasons, many options -- such as laser cut acrylic, or 3D printed ABS -- will not perform well for this task. The frame can be ordered cheaply from a prototype PCB vendor, such as Seeed Fusion, as it is essentially a PCB with no copper or other layers.
 

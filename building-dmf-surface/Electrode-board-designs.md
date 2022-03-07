@@ -18,4 +18,18 @@ Front of Electrode Board v4.1
 Back of Electrode Board v4.1
 ```
 
+## MISL v6.2
+
+This board is designed for a 50x75mm top plate, with 5 edge-loaded reservoirs,
+and four active-pumped inputs. One reservoir is designed specifically for 
+vortex mixing. The four active pumped inputs are designed for fluids pumped 
+into the device via holes in the top-plate.
+
+Here's a [video demo](https://youtu.be/Z--gU876NGY) of the active-pumped inputs.
+
+```{figure} images/electrode_board_v6.2.png
+:align: center
+
+Electrode Board v6.2
+```
 
