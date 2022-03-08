@@ -95,7 +95,7 @@ pip3 install .
 To test your installation, you should be able to run `pdcli info`. If you have a purpledrop connected to the USB port on the raspberry pi, this command should print out the serial number and software version found on it. 
 
 ```{note}
-If your device isn't detected, you may need to program or update the embedded firmware on the PurpleDrop. See [Bootloading the PurpleDrop using DFU](/building/Bootloading-the-PurpleDrop-using-DFU).
+If your device isn't detected, you may need to program or update the embedded firmware on the PurpleDrop. See [Bootloading the PurpleDrop using DFU](/building-purpledrop/Bootloading-the-PurpleDrop-using-DFU).
 ```
 
 ### Enable the camera

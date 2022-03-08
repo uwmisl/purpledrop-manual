@@ -6,7 +6,7 @@ demonstrating the process at the end.
 
 ## Preparation
 
-Follow the steps in [](/building/Top-Plate-Preparation.md) and [](/building/MylarFilmAssembly/Mylar-Film-Carrier-Assembly) to create a hydrophobically coated top plate and dielectric film.
+Follow the steps in [](/building-dmf-surface/Top-Plate-Preparation.md) and [](/building-dmf-surface/MylarFilmAssembly/Mylar-Film-Carrier-Assembly) to create a hydrophobically coated top plate and dielectric film.
 
 Make sure your [hardware is setup](/using/Setting-up-and-powering-the-main-board), and you've [installed the driver software](/using/Installing-software). You need to be ready to run the pdserver (and, optionally, pdcam) daemon either on a raspberry PI or on another computer connected via USB to your PurpleDrop. These instructions use the Dashboard UI and a web browser to control the PurpleDrop. 
 

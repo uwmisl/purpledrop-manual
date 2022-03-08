@@ -1,3 +1,5 @@
+
+
 Building DMF Surfaces
 =====================
 
@@ -36,6 +38,13 @@ Cross section of typical PurpleDrop electrode board stackup. Three different
 PCBs are used to create the electrodes, hold the dielectric film/top plate in
 place, and provide electrical connection to the top plate ITO coating.
 ```
+
+```{figure} images/frame_collage.jpg
+:align: center
+
+Examples of Electrode board (MISL v6.1), dielectric frame, and cover (from [pd-frame-50x75](https://github.com/uwmisl/pd-frame-50x75))
+```
+
 
 Building the Electrode Board PCB
 --------------------------------
@@ -84,6 +93,14 @@ compressible foam gaskets.
 Designs for covers are included in the repositories linked above, under
 "Building the Dielectric Layer".
 
+Sub-Topics
+----------
 
+```{toctree}
+:titlesonly:
 
-
+Electrode-board-designs
+Designing-Custom-Electrode-Board
+MylarFilmAssembly/Mylar-Film-Carrier-Assembly
+Top-Plate-Preparation
+```
