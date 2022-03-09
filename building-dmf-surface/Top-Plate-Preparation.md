@@ -41,7 +41,16 @@ Clean the surface. You can use isopropyl alcohol and kim wipes, or an ultrasonic
 
 ### Place the copper tape
 
-Apply the copper tape over one edge of the ITO glass, so that it folds over approximately equally onto both sides of the glass. The copper tape will provide a conduction path from the ITO to the opposite side of the glass for connection later.
+Apply the copper tape over one edge of the ITO glass, so that it folds over approximately equally onto both sides of the glass. The copper tape will provide a conduction path from the ITO to the opposite side of the glass for connection later. 
+
+Although not necessary, if you are building multiple top plates there is a 3d-printable jig to help apply the tape:
+[https://github.com/uwmisl/purpledrop-3dmodels/tree/main/tapejigs](https://github.com/uwmisl/purpledrop-3dmodels/tree/main/tapejigs)
+
+```{raw} html
+<video width="400" controls="" class="align-center">
+    <source src="../_static/tape_jig_usage.mp4">
+</video>
+```
 
 ### Attach spacers
 
