@@ -11,5 +11,6 @@ Moving-your-first-drop
 Scripted-control-tutorial
 CapacitanceMeasurement/Capacitance-Measurement
 Feedback-controlled-splitting
+python-cookbook/index
 ```
 
