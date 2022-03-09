@@ -14,6 +14,8 @@
 
 [Frame for 50x75 top plate](https://github.com/uwmisl/pd-frame-50x75)
 
+[PurpleDrop 3d Models](https://github.com/uwmisl/purpledrop-3dmodels) - Repository for 3d-printable tools and accessories
+
 ## Software Repositories
 
 [purpledrop-stm32](https://github.com/uwmisl/purpledrop-stm32) - The embedded software which runs on the PurpleDrop microcontroller
